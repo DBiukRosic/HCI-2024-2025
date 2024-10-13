@@ -13,6 +13,7 @@
 - **`/semester-project`**: The source code of your main project
 - **`/assignments`**: Results of your semester assignments
 - **`/docs`**: If using GitHub for documentation (e.g., your final report in Markdown format)
+- **`/misc`**: Miscellaneous files related to the project
 
 ## My Project Links
 
