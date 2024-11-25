@@ -19,21 +19,22 @@
 
 ### Semester Project
 
-- Link to my production version: [**Production Version**](URL_TO_PRODUCTION_VERSION) <!-- Replace with actual URL -->
+- Link to my production version: [**Production Version**](https://art4u.vercel.app/) <!-- Replace with actual URL -->
 - Link to my final report: [**Final Report**](URL_TO_FINAL_REPORT) <!-- Replace with actual URL -->
 <!-- Add more as necessary -->
 
 ### Semester Assignments
 
 - Link to Assignment 1: [**Assignment 1**](assignments/class_assignment_1/)
-- Link to Assignment 2: [**Asignment 2**](assignments/class_assignment_2/) <!-- Replace with actual URL --><!-- Replace with actual URL -->
+- Link to Assignment 2: [**Asignment 2**](assignments/class_assignment_2/)
+- Link to Assignment 3: [**Assignment 3**](https://art4u.vercel.app/) <!-- Replace with actual URL --><!-- Replace with actual URL -->
 <!-- Add more assignments as necessary -->
 
 ## Project Requirements
 
 ### Web Application Requirements
 
-- [ ] The application will be used from a web browser
+- [x] The application will be used from a web browser
 - [ ] It will be accessible on devices of different sizes
 - [ ] Users can search/filter products or services
 - [ ] The application will support user login for showing private content
