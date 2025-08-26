@@ -8,9 +8,36 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      colors:{
+        "brand-blue":{
+          50: "#E8E9EB",
+          75: "#A0A5AF",
+          100: "#787F8D",
+          200: "#3E485C",
+          300: "#17233B",
+          400: "#101929",
+          500: "#0E1524",
+        },
+        "brand-orange":{
+          50: "#FFF2E6",
+          75: "#FFCA96",
+          100: "#FFB46B",
+          200: "#FF932B",
+          300: "#FF7D00",
+          400: "#B35800",
+          500: "#9C4C00",
+        },
+      },
+      fontFamily:{
+        urbanist: ["var(--font-urbanist)"],
+        unlock: ["var-(--font-unlock)"],
+        inter: ["var-(--font-inter)"],
+        sarpanch: ["var-(--font-sarpanch)"],
       },
     },
   },

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Community",
+  title: "Accessibility",
 };
 
-export default function Community() {
+export default function Accessibility() {
     return (
       <main className="flex min-h-screen flex-col items-center p-10">
-        <h1 className="text-6xl font-extrabold tracking-tight">Community</h1>
+        <h1 className="text-6xl font-extrabold tracking-tight">Accessibility</h1>
       </main>
     );
   }

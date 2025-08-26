@@ -1,7 +1,11 @@
+import Link from "next/link";
+import HeroSection from "./sections/HeroSection";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-10">
-      <h1 className="text-6xl font-extrabold tracking-tight">Home page</h1>
+    <main className="flex flex-col justify-between items-center">
+      <HeroSection />
+      
     </main>
   );
 }

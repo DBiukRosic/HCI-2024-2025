@@ -1,40 +1,35 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { Navigation } from "@/components/navigation";
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { Inter, Urbanist, Unlock, Sarpanch } from 'next/font/google';
+import clsx from 'clsx';
+import './globals.css';
+import NavBar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+//Fonts and their settings
+const inter = Inter({ subsets: ['latin'], variable: "--font-inter"});
+const urbanist = Urbanist({ subsets: ['latin'], variable: "--font-urbanist" });
+const unlock = Unlock({weight: "400", subsets: ["latin"] , variable: "--font-unlock"});
+const sarpanch = Sarpanch({weight: "400", subsets: ["latin"] , variable: "--font-sarpanch"});
 
+//Tab name and description
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Art4U",
-    default: "Art4U",
-  },
-  description: "Improve your life with art.",
-};
+  title: 'CAR(E)',
+  description: 'CAR(E) webpage',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navigation />
+    <html lang="en" className={clsx(unlock.variable, inter.variable, urbanist.variable, sarpanch.variable)}>
+      <body className={urbanist.className}>
+        <NavBar />
         {children}
-      </body>
+        <Footer />
+        </body>
     </html>
-  );
-}
+  )
+  };
