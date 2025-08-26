@@ -1,9 +1,6 @@
 import { Post } from "../page";
 
-// Dynamic segment: /find_our_shops/[postId]
 type Params = { postId: string };
-
-// Query params: ?highlight=true
 type Query = { highlight?: string };
 
 const BASE_API_URL = "https://jsonplaceholder.typicode.com";
@@ -19,10 +16,10 @@ export default async function FindOurShopsPost({
   searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<Query> | Query;
+  searchParams: Promise<Query>; // 👈 make it a Promise
 }) {
   const { postId } = await params;
-  const q = await searchParams;          
+  const q = await searchParams; // always await
   const highlight = q?.highlight === "true";
 
   const post = await getPost(postId);
@@ -37,5 +34,6 @@ export default async function FindOurShopsPost({
     </main>
   );
 }
+
 
 
