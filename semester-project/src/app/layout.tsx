@@ -24,12 +24,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={clsx(unlock.variable, inter.variable, urbanist.variable, sarpanch.variable)}>
+     <html
+      lang="en"
+      className={`dark ${unlock.variable} ${inter.variable} ${urbanist.variable} ${sarpanch.variable}`}
+    >
       <body className={urbanist.className}>
         <NavBar />
         {children}
         <Footer />
-        </body>
+      </body>
     </html>
   )
   };
