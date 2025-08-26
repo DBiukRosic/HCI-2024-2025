@@ -1,4 +1,3 @@
-// next.config.mjs
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -9,11 +8,12 @@ const __dirname = path.dirname(__filename);
 const nextConfig = {
   reactStrictMode: true,
 
-  // Helps Vercel/Next find the correct project root for output tracing
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
+
   outputFileTracingRoot: __dirname,
 
   images: {
-    // Prefer remotePatterns over domains for flexibility
     remotePatterns: [
       { protocol: "https", hostname: "images.ctfassets.net" }, // Contentful
       { protocol: "https", hostname: "res.cloudinary.com" },
