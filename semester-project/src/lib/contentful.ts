@@ -16,5 +16,5 @@ export default async function Page() {
     borderRadius: "15% 15% 15% 15%",
   }));
 
-  return <HeroImagesClient images={images} />; // client child takes plain data
+  return <HeroImagesClient images={images} />;  //client child takes plain data
 }

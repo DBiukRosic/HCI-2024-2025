@@ -33,12 +33,12 @@ const config: Config = {
           500: "#9C4C00",
         },
       },
-      fontFamily:{
-        urbanist: ["var(--font-urbanist)"],
-        unlock: ["var-(--font-unlock)"],
-        inter: ["var-(--font-inter)"],
-        sarpanch: ["var-(--font-sarpanch)"],
-      },
+      fontFamily: {
+          urbanist: ["var(--font-urbanist)"],
+          unlock: ["var(--font-unlock)"],
+          inter: ["var(--font-inter)"],
+          sarpanch: ["var(--font-sarpanch)"],
+          },
     },
   },
   plugins: [],

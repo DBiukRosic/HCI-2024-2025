@@ -1,4 +1,4 @@
-import Link from "next/link";
+//import Link from "next/link";
 import HeroSection from "./sections/HeroSection";
 
 export default function Home() {
