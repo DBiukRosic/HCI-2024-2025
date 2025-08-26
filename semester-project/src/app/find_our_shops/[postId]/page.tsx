@@ -1,8 +1,7 @@
 import { Post } from "../page";
 
 type Params = { postId: string };
-
-type FindOurShopsPostProps = { params: Params };
+type FindOurShopsPostProps = { params: Promise<Params> }; // 👈 make it a Promise
 
 const BASE_API_URL = "https://jsonplaceholder.typicode.com";
 
@@ -11,12 +10,10 @@ const getPost = async (id: string): Promise<Post> => {
   if (!res.ok) throw new Error(`Failed to fetch post ${id}`);
   return res.json();
 };
-export default async function FindOurShopsPost(
-  { params }: FindOurShopsPostProps
-) {
-  const { postId } = params;
-  const post = await getPost(postId);
 
+export default async function FindOurShopsPost({ params }: FindOurShopsPostProps) {
+  const { postId } = await params;     // 👈 await it
+  const post = await getPost(postId);
   return (
     <main className="flex flex-col items-center min-h-screen max-w-5xl m-auto p-10">
       <h1 className="text-3xl font-urbanist-bold p-10 capitalize">
