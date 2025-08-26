@@ -1,23 +1,21 @@
 import { NextResponse } from "next/server";
-import { createClient } from "contentful";
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
+
+type CreateUserPayload = {
+  name: string;
+  email: string;
+};
 
 export async function GET() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string, // Delivery API key
-  });
-
-  const res = await client.getEntries({ content_type: "heroSection" });
-  const hero = res.items[0];
-
-  const images =
-    (hero?.fields?.images as any[] | undefined)?.map((img) => ({
-      url: "https:" + img.fields.file.url,
-      width: img.fields.file.details.image.width,
-      height: img.fields.file.details.image.height,
-      title: img.fields.title ?? "Hero image",
-      borderRadius: "10% 10% 10% 10%",
-    })) ?? [];
-
-  return NextResponse.json(images);
+  const all = await db.select().from(users);
+  return NextResponse.json(all);
 }
+
+export async function POST(req: Request) {
+  const body = (await req.json()) as CreateUserPayload;
+  await db.insert(users).values({ name: body.name, email: body.email });
+  return NextResponse.json({ success: true });
+}
+
+

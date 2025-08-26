@@ -1,13 +1,7 @@
 "use client";
-import { useState } from "react";
 
 import Logo from "@/components/Logo";
 import MainNav from "@/components/MainNav";
-
-//import Logo from "@/components/Logo";
-//import MainNav from "@/components/MainNav";
-//import Hamburger from "@/components/Hamburger";
-//import MobileNav from "@/components/MobileNav";
 
 export type Page = {
     href: string;

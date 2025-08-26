@@ -1,47 +1,68 @@
 import { NextResponse } from "next/server";
-import { createClient } from "contentful";
+import { createClient, type Asset } from "contentful";
 
-// (Optional) force Node runtime (not Edge)
 export const runtime = "nodejs";
 
-export async function GET() {
-  // Read env at request time (not at module top)
-  const space = process.env.CONTENTFUL_SPACE_ID;
-  const token = process.env.CONTENTFUL_ACCESS_TOKEN;
+// Contentful skeleton for your entry
+type HeroSectionSkeleton = {
+  contentTypeId: "heroSection";
+  fields: {
+    images: Asset[]; // multiple Assets
+  };
+};
 
-  // Debug: return what we see (booleans only)
-  if (!space || !token) {
-    return NextResponse.json(
-      {
-        error: "Missing Contentful env vars",
-        hasSpace: !!space,
-        hasToken: !!token,
-      },
-      { status: 500 }
-    );
-  }
+type ImageDTO = {
+  url: string;
+  title: string;
+  borderRadius: string;
+};
 
-  // Create client only after confirming env vars exist
-  const client = createClient({ space, accessToken: token });
-
-  try {
-    const res = await client.getEntries({ content_type: "heroSection" });
-    const hero = res.items[0];
-
-    const images =
-      (hero?.fields?.images as any[] | undefined)?.map((img) => ({
-        url: "https:" + img.fields.file.url,
-        width: img.fields.file.details.image.width,
-        height: img.fields.file.details.image.height,
-        title: img.fields.title ?? "Hero image",
-        borderRadius: "10% 10% 10% 10%",
-      })) ?? [];
-
-    return NextResponse.json({ ok: true, count: images.length, images });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err?.message ?? "Unknown error calling Contentful" },
-      { status: 500 }
-    );
-  }
+function normalizeUrl(url?: string): string {
+  if (!url) return "";
+  return url.startsWith("//") ? `https:${url}` : url;
 }
+
+export async function GET() {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID!,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
+  });
+
+  // Ask for the hero entry
+  const res = await client.getEntries<HeroSectionSkeleton>({
+    content_type: "heroSection",
+    limit: 1,
+  });
+
+  const hero = res.items[0];
+
+  // ✅ Narrow images to Asset[] first (fixes “map on never”)
+  const imagesArr: Asset[] = hero?.fields?.images ?? [];
+
+  const images: ImageDTO[] = imagesArr.map((img) => {
+    // file can be localized; pick the first locale if needed
+    const fileField = img.fields.file as
+      | { url?: string }
+      | Record<string, { url?: string }>
+      | undefined;
+
+    let url: string | undefined;
+    if (fileField && "url" in fileField) {
+      url = typeof fileField.url === "string" ? fileField.url : undefined;
+    } else if (fileField) {
+      const first = Object.values(fileField)[0];
+      url = first?.url;
+    }
+
+    return {
+      url: normalizeUrl(url),
+      title: (img.fields.title as string) ?? "Hero image",
+      borderRadius: "10% 10% 10% 10%",
+    };
+  });
+
+  return NextResponse.json({ ok: true, count: images.length, images });
+}
+
+
+
