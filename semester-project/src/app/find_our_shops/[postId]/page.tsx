@@ -1,18 +1,21 @@
 import { Post } from "../page";
 
-interface Params {
-  postId: string;
-}
+type Params = { postId: string };
+
+type FindOurShopsPostProps = { params: Params };
 
 const BASE_API_URL = "https://jsonplaceholder.typicode.com";
 
 const getPost = async (id: string): Promise<Post> => {
-  const data = await fetch(`${BASE_API_URL}/posts/${id}`);
-  return data.json();
+  const res = await fetch(`${BASE_API_URL}/posts/${id}`, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to fetch post ${id}`);
+  return res.json();
 };
-
-export default async function FindOurShopsPost({ params }: { params: Params }) {
-  const post = await getPost(params.postId);
+export default async function FindOurShopsPost(
+  { params }: FindOurShopsPostProps
+) {
+  const { postId } = params;
+  const post = await getPost(postId);
 
   return (
     <main className="flex flex-col items-center min-h-screen max-w-5xl m-auto p-10">
