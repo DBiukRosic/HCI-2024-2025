@@ -1,5 +1,3 @@
-import type PageProps from "next";
-
 type Post = { userId: number; id: number; title: string; body: string };
 
 type Params = { postId: string };
