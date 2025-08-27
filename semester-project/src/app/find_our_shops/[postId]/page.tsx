@@ -1,4 +1,6 @@
-import { Post } from "../page";
+import type PageProps from "next";
+
+type Post = { userId: number; id: number; title: string; body: string };
 
 type Params = { postId: string };
 type Query = { highlight?: string };
@@ -15,11 +17,11 @@ export default async function FindOurShopsPost({
   params,
   searchParams,
 }: {
-  params: Promise<Params>;
-  searchParams: Promise<Query>; // 👈 make it a Promise
+  params: Promise<Params>;                       // 👈 Next 15: params is a Promise
+  searchParams: Promise<Query>;                  // 👈 searchParams is also a Promise
 }) {
-  const { postId } = await params;
-  const q = await searchParams; // always await
+  const { postId } = await params;              // must await
+  const q = await searchParams;                 // must await
   const highlight = q?.highlight === "true";
 
   const post = await getPost(postId);
@@ -34,6 +36,7 @@ export default async function FindOurShopsPost({
     </main>
   );
 }
+
 
 
 
