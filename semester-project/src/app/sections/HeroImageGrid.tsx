@@ -35,7 +35,11 @@ const HeroImageGrid = ({ images }: HeroImageGridProps) => {
               src={src}
               alt={`Hero image ${index + 1}`}
               fill
-              className="object-cover"
+              className="
+                object-cover
+                transition-transform duration-500 ease-in-out
+                hover:scale-110
+                "
               sizes="(min-width:1280px) 20rem, (min-width:1024px) 50vw, 100vw"
             />
           </div>

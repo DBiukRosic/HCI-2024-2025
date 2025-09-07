@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Us • CAR(E)",
+  description: "Get in touch with the CAR(E) team for support, inquiries, or feedback.",
 };
 
 export default function ContactUs() {

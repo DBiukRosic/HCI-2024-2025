@@ -61,7 +61,7 @@ const HeroSection = () => {
         </p>
 
         <div className="flex justify-center lg:justify-center">
-          <Button orange>BOOK A MEETING NOW</Button>
+          <Button orange showIcon>BOOK A MEETING NOW</Button>
         </div>
       </div>
 

@@ -1,5 +1,11 @@
 import Link from "next/link";
 import clsx from "clsx";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Find Our Shops • CAR(E)",
+  description: "Locate CAR(E) shops near you for reliable car maintenance and repair services.",
+};
 
 export interface Post {
   userId: number;

@@ -22,7 +22,7 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
                 className={cn(
                   `
                     uppercase whitespace-nowrap font-urbanist text-base px-5 py-3 rounded
-                    bg-brand-orange-100 text-brand-blue-500 hover:bg-brand-orange-200
+                    bg-brand-orange-200 text-brand-blue-500 hover:bg-brand-orange-400
                     dark:bg-brand-blue-900 dark:text-white dark:hover:bg-brand-blue-700
                   `,
                   {
@@ -53,7 +53,7 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
                   className={cn(
                     `
                       block text-center uppercase font-urbanist text-base px-4 py-3 rounded
-                      bg-brand-orange-100 text-brand-blue-500 hover:bg-brand-orange-200
+                      bg-brand-orange-200 text-brand-blue-500 hover:bg-brand-orange-400
                       dark:bg-brand-blue-900 dark:text-white dark:hover:bg-brand-blue-700
                     `,
                     {

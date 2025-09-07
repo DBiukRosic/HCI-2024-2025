@@ -2,6 +2,7 @@
 
 import Logo from "@/components/Logo";
 import MainNav from "@/components/MainNav";
+import Link from "next/link";
 
 export type Page = {
     href: string;
@@ -24,9 +25,13 @@ const pages: Page[] = [
     //const [open, setOpen] = useState(false);
   
     return (
-      <div className="container flex items-center justify-between">
-        <Logo />
-        <MainNav pages={pages} />
+      <div className="bg-brand-blue-200 w-full border-b border-gray-200 dark:bg-brand-blue-800 dark:border-gray-500">
+        <div className="container flex items-center justify-between">
+          <Link href="/" aria-label="Go to homepage">
+            <Logo />
+          </Link>
+          <MainNav pages={pages} />
+        </div>
       </div>
     );
   };

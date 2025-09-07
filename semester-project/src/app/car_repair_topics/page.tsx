@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Car Repair Topics",
+  title: "Car Repair Topics • CAR(E)",
+  description: "Explore a wide range of car repair topics with expert guides and tips from CAR(E).",
 };
 
 export default function CarRepairTopics() {
