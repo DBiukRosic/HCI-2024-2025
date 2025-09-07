@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 
 import Logo from "@/components/Logo";
 import MainNav from "@/components/MainNav";

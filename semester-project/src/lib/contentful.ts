@@ -1,5 +1,5 @@
 // src/lib/contentful.ts
-import { createClient, type Asset } from "contentful";
+import { createClient, type Asset, } from "contentful";
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -112,7 +112,7 @@ export async function getTeamMembers(): Promise<TeamMemberDTO[]> {
   
 
   return res.items.map((entry) => {
-    const url = getAssetUrl(entry.fields.avatar.fields.file);
+    const url = getAssetUrl((entry.fields.avatar as Asset).fields.file);
     // Request a 256x256 square thumbnail (Contentful will transform; Next will still optimize)
     const avatar = normalizeUrl(url) + "?w=256&h=256&fit=thumb&f=face&fm=webp";
     return {

@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
      <html
       lang="en"
+      suppressHydrationWarning
       className={`dark ${unlock.variable} ${inter.variable} ${urbanist.variable} ${sarpanch.variable}`}
     >
       <body className={urbanist.className}>
