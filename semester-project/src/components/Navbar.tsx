@@ -23,7 +23,7 @@ const pages: Page[] = [
   const NavBar = () => {
   
     return (
-      <div className="bg-brand-blue-200 w-full border-b border-gray-200 dark:bg-brand-blue-800 dark:border-gray-500">
+      <div className="sticky top-0 z-50 bg-brand-blue-200/90 w-full border-b border-gray-200 dark:bg-brand-blue-800 dark:border-gray-500">
         <div className="container flex items-center justify-between">
           <Link href="/" aria-label="Go to homepage">
             <Logo />
