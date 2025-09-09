@@ -11,8 +11,8 @@ export type Page = {
 
 const pages: Page[] = [
     { href: "/", title: "Home" },
-    { href: "/car_repair_topics", title: "Car Repair Topics" },
-    { href: "/resources", title: "Resources" },
+    { href: "/car_repair_topics", title: "Our Services" },
+    { href: "/tutorials", title: "Tutorials" },
     { href: "/find_our_shops", title: "Find Us" },
     { href: "/about_us", title: "About Us" },
     { href: "/user_profile", title: "Sign In" },

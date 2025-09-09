@@ -43,9 +43,9 @@ const HeroSection = () => {
 
   return (
     <Fragment>
-    <section className="container flex justify-between items-center gap-10 w-screen mb-8">
-      <div className="flex flex-col justify-start gap-4 max-w-xl m-auto lg:m-0">
-        <h1 className="font-urbanist text-4xl font-bold lg:text-left xl:text-5xl whitespace-break-spaces text-brand-blue-50">
+    <section className="container flex justify-between items-center w-full mb-8">
+      <div className="flex flex-col lg:justify-start gap-4 max-w-xl m-auto lg:m-0">
+        <h1 className="font-urbanist text-4xl text-center font-bold lg:text-left xl:text-5xl whitespace-break-spaces text-brand-blue-50">
           We care about your car!
         </h1>
 
@@ -61,7 +61,7 @@ const HeroSection = () => {
         </p>
 
         <div className="flex justify-center lg:justify-center">
-          <Button orange showIcon>BOOK A MEETING NOW</Button>
+          <Button orange showIcon href="/user_profile">BOOK A MEETING NOW</Button>
         </div>
       </div>
 

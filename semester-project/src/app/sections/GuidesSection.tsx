@@ -11,7 +11,7 @@ export default function GuidesSection() {
             src="/hero_guides_tips/car_guide.jpg"
             alt="Car maintenance illustration"
             fill
-            className="object-cover"
+            className="object-cover hover:scale-110 transition-transform duration-500 ease-in-out"
             priority
           />
         </div>
@@ -19,7 +19,7 @@ export default function GuidesSection() {
         {/* Right: text + button */}
         <div className="flex flex-col gap-4 text-center lg:text-left items-center lg:items-start">
           <h2 className="text-2xl lg:text-3xl font-bold font-urbanist text-brand-blue-500 dark:text-brand-blue-50">
-            Car Maintenance Guides and Tips
+            You can do it yourself!
           </h2>
           <p className="text-base lg:text-lg text-brand-blue-400 dark:text-brand-blue-300/80">
             Discover essential car care tips and expert guides for maintaining your vehicle. 
@@ -28,8 +28,8 @@ export default function GuidesSection() {
             the knowledge you need for optimal vehicle performance.
           </p>
           <div className="pt-2">
-            <Button blue showIcon href="/car_repair_topics">
-              Explore tips and guides
+            <Button blue showIcon href="/tutorials">
+              Explore our tutorials
             </Button>
           </div>
         </div>
