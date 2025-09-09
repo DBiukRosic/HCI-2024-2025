@@ -9,7 +9,6 @@ export type Page = {
     title: string;
   };
 
-// Get this info from some external source (e.g. CMS)
 const pages: Page[] = [
     { href: "/", title: "Home" },
     { href: "/car_repair_topics", title: "Car Repair Topics" },
@@ -22,7 +21,6 @@ const pages: Page[] = [
   ];
 
   const NavBar = () => {
-    //const [open, setOpen] = useState(false);
   
     return (
       <div className="bg-brand-blue-200 w-full border-b border-gray-200 dark:bg-brand-blue-800 dark:border-gray-500">

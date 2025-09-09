@@ -19,7 +19,7 @@ type ButtonAsButton = BaseProps & {
 
 type ButtonAsLink = BaseProps & {
   href: string;
-  onClick?: never; // don’t allow onClick for links
+  onClick?: never;
 };
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;

@@ -1,4 +1,3 @@
-// src/lib/contentful.ts
 import { createClient, type Asset, } from "contentful";
 
 export const contentful = createClient({
@@ -6,7 +5,7 @@ export const contentful = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-/** ---------- helpers ---------- */
+// Helper to extract URL from Contentful Asset field, handling localization
 function getAssetUrl(fileField: unknown): string | undefined {
   // Non-localized: { url: string }
   if (
@@ -29,7 +28,7 @@ function normalizeUrl(url?: string) {
   return url.startsWith("//") ? `https:${url}` : url;
 }
 
-/** ---------- existing skeletons ---------- */
+// Skeleton types for Contentful entries
 type BlogPostSkeleton = {
   contentTypeId: "blogPost";
   fields: {
@@ -44,32 +43,31 @@ type HeroSectionSkeleton = {
   fields: { images: Asset[] };
 };
 
-/** ---------- new skeletons ---------- */
 type TeamMemberSkeleton = {
   contentTypeId: "teamMember";
   fields: {
     name: string;
-    position: string; // <-- matches your field
+    position: string;
     bio?: string;
-    avatar: Asset; // Asset type from contentful, which has 'fields'
+    avatar: Asset;
   };
 };
 
 type StatSkeleton = {
   contentTypeId: "stat";
   fields: {
-    label: string; // <-- matches your field
+    label: string;
     value: number;
     suffix?: string;
   };
 };
 
-/** ---------- DTOs for your UI ---------- */
+// Normalized types for app use
 export type TeamMemberDTO = {
   name: string;
   position: string;
   bio?: string;
-  avatarUrl: string; // normalized https
+  avatarUrl: string;
 };
 
 export type StatDTO = {
@@ -79,7 +77,7 @@ export type StatDTO = {
   suffix?: string;
 };
 
-/** ---------- existing fetchers ---------- */
+// Fetchers
 export async function getBlogPosts() {
   const entries = await contentful.getEntries<BlogPostSkeleton>({
     content_type: "blogPost",
@@ -104,7 +102,6 @@ export async function getHeroImages() {
   });
 }
 
-/** ---------- new fetchers ---------- */
 export async function getTeamMembers(): Promise<TeamMemberDTO[]> {
   const res = await contentful.getEntries<TeamMemberSkeleton>({
     content_type: "teamMember",
@@ -113,7 +110,6 @@ export async function getTeamMembers(): Promise<TeamMemberDTO[]> {
 
   return res.items.map((entry) => {
     const url = getAssetUrl((entry.fields.avatar as Asset).fields.file);
-    // Request a 256x256 square thumbnail (Contentful will transform; Next will still optimize)
     const avatar = normalizeUrl(url) + "?w=256&h=256&fit=thumb&f=face&fm=webp";
     return {
       name: entry.fields.name,

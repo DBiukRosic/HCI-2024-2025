@@ -9,8 +9,7 @@ export const metadata: Metadata = {
     "We make car maintenance accessible, reliable, and stress-free with expert guides and trusted service.",
 };
 
-// Optional: revalidate once per hour so Contentful updates appear automatically
-export const revalidate = 3600;
+//export const revalidate = 3600;
 
 export default async function AboutUsPage() {
   const [team, stats] = await Promise.all([getTeamMembers(), getStats()]);

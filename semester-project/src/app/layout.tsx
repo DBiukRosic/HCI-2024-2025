@@ -11,7 +11,6 @@ const urbanist = Urbanist({ subsets: ['latin'], variable: "--font-urbanist" });
 const unlock = Unlock({weight: "400", subsets: ["latin"] , variable: "--font-unlock"});
 const sarpanch = Sarpanch({weight: "400", subsets: ["latin"] , variable: "--font-sarpanch"});
 
-//Tab name and description
 export const metadata: Metadata = {
   title: 'CAR(E)',
   description: 'CAR(E) webpage',
