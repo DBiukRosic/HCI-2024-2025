@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import CategoryServices from "../_components/CategoryServices";
 
-export const metadata: Metadata = {
-  title: "Maintenance",
+export const metadata = {
+  title: "Maintenance • CAR(E)",
+  description: "Essential maintenance services to keep your car reliable.",
 };
 
-export default function Maintenance() {
-    return (
-      <main className="flex min-h-screen flex-col items-center p-10">
-        <h1 className="text-6xl font-extrabold tracking-tight">Maintenance</h1>
-      </main>
-    );
-  }
+export default function Page() {
+  return (
+    <CategoryServices
+      category="maintenance"
+      title="Maintenance Services"
+      intro="Routine maintenance to protect components, avoid breakdowns, and extend your vehicle’s lifespan."
+    />
+  );
+}

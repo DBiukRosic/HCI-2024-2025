@@ -80,11 +80,15 @@ export default function CarRepairTopicsPage() {
   return (
     <main className="min-h-screen">
       <section className="container py-10 lg:py-14">
-        <h1 className="text-3xl lg:text-4xl font-urbanist font-bold text-brand-blue-500 dark:text-brand-orange-50">
+        <h1 className="text-3xl lg:text-4xl font-urbanist font-bold text-brand-orange-100">
           Services We Offer
         </h1>
-        <p className="mt-3 max-w-2xl text-brand-blue-300 dark:text-brand-blue-100/80">
-          Choose a category to dive into detailed guides, tips, and services we offer.
+        <p className="mt-6 max-w-2xl text-brand-orange-50">
+          Choose a category to explore the range of <span className="font-bold">professional 
+    services</span> we provide. From essential maintenance to keep your car reliable, 
+    to performance upgrades that boost efficiency, to safety-focused inspections and 
+    repairs, and even customization to match your personal style — our services cover 
+    every aspect of caring for your vehicle.
         </p>
 
         {/* Cards */}

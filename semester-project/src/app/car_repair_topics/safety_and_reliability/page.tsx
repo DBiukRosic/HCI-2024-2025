@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import CategoryServices from "../_components/CategoryServices";
 
-export const metadata: Metadata = {
-  title: "Safety and Reliability",
+export const metadata = {
+  title: "Safety & Reliability • CAR(E)",
+  description: "Inspections and repairs to keep you safe and prevent failures.",
 };
 
-export default function SafetyAndReliability() {
-    return (
-      <main className="flex min-h-screen flex-col items-center p-10">
-        <h1 className="text-6xl font-extrabold tracking-tight">Safety and Reliability</h1>
-      </main>
-    );
-  }
+export default function Page() {
+  return (
+    <CategoryServices
+      category="safety_and_reliability"
+      title="Safety & Reliability"
+      intro="Critical system checks and repairs to ensure safe operation and dependable travel."
+    />
+  );
+}

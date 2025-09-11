@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import CategoryServices from "../_components/CategoryServices";
 
-export const metadata: Metadata = {
-  title: "Efficiency and Performance",
+export const metadata = {
+  title: "Efficiency & Performance • CAR(E)",
+  description: "Upgrades and services to improve economy and responsiveness.",
 };
 
-export default function EfficiencyAndPerformance() {
-    return (
-      <main className="flex min-h-screen flex-col items-center p-10">
-        <h1 className="text-6xl font-extrabold tracking-tight">Efficiency and Performance</h1>
-      </main>
-    );
-  }
+export default function Page() {
+  return (
+    <CategoryServices
+      category="efficiency_and_performance"
+      title="Efficiency & Performance"
+      intro="Targeted services to enhance throttle response, fuel economy, and overall drivability."
+    />
+  );
+}

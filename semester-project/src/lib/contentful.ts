@@ -1,4 +1,4 @@
-import { createClient, type Asset, } from "contentful";
+import { createClient, type EntrySkeletonType, type Asset, type EntryFieldTypes, type Entry } from "contentful";
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -23,9 +23,36 @@ function getAssetUrl(fileField: unknown): string | undefined {
   }
   return undefined;
 }
+function firstLocale<T>(field: unknown): T | undefined {
+  if (
+    typeof field === "string" ||
+    typeof field === "number" ||
+    typeof field === "boolean"
+  )
+    return field as T;
+  if (field && typeof field === "object") {
+    const v = Object.values(field as Record<string, unknown>)[0];
+    return v as T | undefined;
+  }
+  return undefined;
+}
 function normalizeUrl(url?: string) {
   if (!url) return "";
   return url.startsWith("//") ? `https:${url}` : url;
+}
+
+function assetUrl(fileField: unknown): string | undefined {
+  // Non-localized { url }
+  if (fileField && typeof fileField === "object" && "url" in (fileField as any)) {
+    const u = (fileField as { url?: string }).url;
+    return typeof u === "string" ? u : undefined;
+  }
+  // Localized { locale: { url } }
+  if (fileField && typeof fileField === "object") {
+    const first = Object.values(fileField as Record<string, { url?: string }>)[0];
+    return first?.url;
+  }
+  return undefined;
 }
 
 // Skeleton types for Contentful entries
@@ -62,6 +89,7 @@ type StatSkeleton = {
   };
 };
 
+
 // Normalized types for app use
 export type TeamMemberDTO = {
   name: string;
@@ -75,6 +103,15 @@ export type StatDTO = {
   label: string;
   value: number;
   suffix?: string;
+};
+
+export type ServicePageDTO = {
+  category: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  timeMinutes: number;
+  costEuro: number;
 };
 
 // Fetchers
@@ -134,5 +171,51 @@ export async function getStats(): Promise<StatDTO[]> {
 }
 
 
+
+type ServiceItemSkeleton = EntrySkeletonType & {
+  contentTypeId: "serviceItem";
+  fields: {
+    title: EntryFieldTypes.Symbol;
+    description: EntryFieldTypes.Text;
+    image: Asset;
+    timeMinutes: EntryFieldTypes.Integer;
+    costEuro: EntryFieldTypes.Number;
+    category: EntryFieldTypes.Symbol; // one of the 4 categories
+  };
+};
+
+export type ServiceItemDTO = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  timeMinutes: number;
+  costEuro: number;
+  category: string;
+};
+
+export async function getServiceItems(category: string): Promise<ServiceItemDTO[]> {
+  const res = await contentful.getEntries<ServiceItemSkeleton>({
+    content_type: "serviceItem",
+    "fields.category": category,
+    order: ["fields.title"],
+    limit: 200,
+  });
+
+  return res.items.map((it) => {
+    const asset = it.fields.image as Asset | undefined;
+    const file = asset?.fields?.file;
+    const rawUrl: string | undefined = file?.url ?? (file && Object.values(file)?.[0]?.url);
+    const imageUrl = normalizeUrl(rawUrl);
+
+    return {
+      title: it.fields.title as string,
+      description: it.fields.description as string,
+      timeMinutes: it.fields.timeMinutes as number,
+      costEuro: it.fields.costEuro as number,
+      category: it.fields.category as string,
+      imageUrl,
+    };
+  });
+}
 
 
