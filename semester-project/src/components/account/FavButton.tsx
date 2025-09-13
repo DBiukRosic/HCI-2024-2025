@@ -64,11 +64,6 @@ export default function FavButton({
   setIsFav(next);
   onToggle?.(next);
 
-  // pick table/columns
-  const table = kind === "tutorial" ? "favorite_tutorials" : "favorite_locations";
-  const idCol = kind === "tutorial" ? "tutorial_id" : "shop_id";
-  const onConflictCols = kind === "tutorial" ? "user_id,tutorial_id" : "user_id,shop_id";
-
   try {
       if (next) {
         // INSERT/UPSERT (branch per table to avoid `any`)

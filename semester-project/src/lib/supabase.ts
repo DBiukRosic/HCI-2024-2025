@@ -15,9 +15,6 @@ export async function createSupabaseServer() {
       get(name: string) {
         return store.get(name)?.value;
       },
-      // no-ops in Server Components (cannot mutate cookies here)
-      set(_name: string, _value: string, _options: CookieOptions) {},
-      remove(_name: string, _options: CookieOptions) {},
     },
   });
 }
