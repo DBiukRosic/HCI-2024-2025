@@ -9,17 +9,15 @@ export const metadata: Metadata = {
     "We make car maintenance accessible, reliable, and stress-free with expert guides and trusted service.",
 };
 
-//export const revalidate = 3600;
-
 export default async function AboutUsPage() {
   const [team, stats] = await Promise.all([getTeamMembers(), getStats()]);
 
   return (
-    <main className="min-h-screen bg-brand-blue-75 dark:bg-brand-blue-500">
+    <main className="min-h-screen bg-brand-blue-500">
       {/* Hero */}
-      <section className="w-full bg-brand-blue-200 dark:bg-brand-blue-400">
+      <section className="w-full bg-brand-blue-400">
         <div className="container py-14 lg:py-20">
-          <h1 className="font-urbanist text-4xl lg:text-5xl font-bold text-brand-blue-500 dark:text-brand-orange-50">
+          <h1 className="font-urbanist text-4xl lg:text-5xl font-bold text-brand-orange-100">
             About CAR(E)
           </h1>
           <p className="mt-4 max-w-2xl text-brand-blue-400 dark:text-brand-blue-50/80">
@@ -33,25 +31,25 @@ export default async function AboutUsPage() {
       <section className="container py-12 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div>
-            <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-blue-400 dark:text-brand-orange-50">
+            <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-orange-50">
               Our Story
             </h2>
-            <p className="mt-4 text-brand-blue-300 dark:text-brand-blue-50/80">
+            <p className="mt-4 text-brand-blue-50/80">
               We started as a small garage with one goal—make car care transparent. Today, CAR(E)
               combines hands-on expertise with clear resources so you know what&apos;s happening
               under the hood and what it really takes to keep your car healthy.
             </p>
-            <p className="mt-3 text-brand-blue-300 dark:text-brand-blue-50/80">
+            <p className="mt-3 text-brand-blue-50/80">
               From preventative maintenance to complex diagnostics, we believe knowledge saves money,
               time, and stress. That&apos;s why we&apos;re building tutorials, tools, and services
               that are easy to understand and easy to use.
             </p>
           </div>
           <div className="rounded-2xl bg-brand-blue-100/30 p-6 border border-brand-orange-100">
-            <h3 className="font-semibold text-brand-blue-400 dark:text-brand-orange-50">
+            <h3 className="font-semibold text-brand-orange-50">
               What We Offer
             </h3>
-            <ul className="mt-4 space-y-2 text-brand-blue-300 dark:text-brand-blue-50/80 list-disc list-inside">
+            <ul className="mt-4 space-y-2 text-brand-blue-50/80 list-disc list-inside">
               <li>Step-by-step repair topics you can trust</li>
               <li>Expert resources curated for every skill level</li>
               <li>Find our shops and book service you can rely on</li>
@@ -62,9 +60,9 @@ export default async function AboutUsPage() {
       </section>
 
       {/* Values */}
-      <section className="w-full bg-brand-blue-300/40 dark:bg-brand-blue-400/30">
+      <section className="w-full dark:bg-brand-blue-400/30">
         <div className="container py-12 lg:py-16">
-          <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-blue-400 dark:text-brand-orange-50">
+          <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-orange-50">
             Our Values
           </h2>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -77,7 +75,7 @@ export default async function AboutUsPage() {
 
       {/* Team (from Contentful) */}
       <section className="container py-12 lg:py-16">
-        <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-blue-400 dark:text-brand-orange-50">
+        <h2 className="text-2xl lg:text-3xl font-urbanist font-semibold text-brand-orange-50">
           Meet the Team
         </h2>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -87,9 +85,9 @@ export default async function AboutUsPage() {
             team.map((m) => (
               <article
                 key={m.name}
-                className="rounded-2xl border border-brand-orange-100 bg-white/70 dark:bg-brand-blue-100/20 backdrop-blur p-5"
+                className="rounded-2xl border border-brand-orange-100 bg-brand-blue-100/20 backdrop-blur p-5"
               >
-                <div className="h-16 w-16 rounded-full overflow-hidden bg-brand-blue-100 dark:bg-brand-blue-300/40">
+                <div className="h-16 w-16 rounded-full overflow-hidden bg-brand-blue-300/40">
                   {!!m.avatarUrl && (
                     <Image
                       src={m.avatarUrl}
@@ -100,15 +98,15 @@ export default async function AboutUsPage() {
                     />
                   )}
                 </div>
-                <h3 className="mt-4 font-semibold text-brand-blue-400 dark:text-brand-orange-50">
+                <h3 className="mt-4 font-semibold text-brand-orange-50">
                   {m.name}
                 </h3>
-                {/* In your Contentful skeleton the field is `position` */}
-                <p className="text-sm text-brand-blue-300 dark:text-brand-blue-50/80">
+                {/* In Contentful skeleton the field is `position` */}
+                <p className="text-sm text-brand-blue-50/80">
                   {m.position}
                 </p>
                 {m.bio && (
-                  <p className="mt-3 text-sm text-brand-blue-300 dark:text-brand-blue-50/70">
+                  <p className="mt-3 text-sm text-brand-blue-50/70">
                     {m.bio}
                   </p>
                 )}
@@ -137,13 +135,13 @@ export default async function AboutUsPage() {
       </section>
 
       {/* CTA */}
-      <section className="w-full bg-brand-blue-200 dark:bg-brand-blue-400">
+      <section className="w-full bg-brand-blue-400">
         <div className="container py-12 lg:py-16 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h3 className="text-xl lg:text-2xl font-urbanist font-semibold text-brand-blue-500 dark:text-brand-orange-50">
+            <h3 className="text-xl lg:text-2xl font-urbanist font-semibold text-brand-orange-50">
               Ready to get more from your car?
             </h3>
-            <p className="text-brand-blue-400 dark:text-brand-blue-50/80">
+            <p className="text-brand-blue-50/80">
               Create an account to save guides, like resources, and book service.
             </p>
           </div>
@@ -161,7 +159,7 @@ export default async function AboutUsPage() {
   );
 }
 
-/* ---------- small presentational helpers ---------- */
+/*presentational helpers */
 
 function ValueCard({ title, desc }: { title: string; desc: string }) {
   return (

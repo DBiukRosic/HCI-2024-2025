@@ -23,7 +23,7 @@ body {
 
 @layer base{
   body {
-       @apply dark:bg-brand-blue-500 bg-brand-blue-75;
+       @apply bg-brand-blue-500;
   }
 }
 @layer components {

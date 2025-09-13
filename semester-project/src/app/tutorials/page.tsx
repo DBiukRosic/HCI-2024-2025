@@ -8,30 +8,35 @@ type Tutorial = {
   youtube_url: string;
 };
 
-export const metadata = {
-  title: "Tutorials • CAR(E)",
-  description: "Car repair tutorials with step-by-step videos.",
-};
-
-export const revalidate = 600; // optional cache
-
 export default async function TutorialsPage() {
+  
   const supabase = await createSupabaseServer();
 
-  const { data, error } = await supabase
+  const { data: tutorials = [] } = await supabase
     .from("tutorials")
-    .select("*")
-    .order("created_at", { ascending: false });
+    .select("id, title, description, youtube_url")
+    .order("title");
+    ;
 
-  if (error) throw new Error(error.message);
+  const { data: { user } } = await supabase.auth.getUser();
+  let favIds: number[] = [];
+  if (user) {
+    const { data: favs = [] } = await supabase
+      .from("favorite_tutorials")
+      .select("tutorial_id")
+      .eq("user_id", user.id);
+    favIds = (favs ?? []).map(r => r.tutorial_id);
+  }
 
   return (
     <main className="container py-12 space-y-8">
-      <h1 className="text-3xl font-bold font-urbanist text-brand-blue-500 dark:text-brand-orange-50">
+      <h1 className="text-4xl font-bold font-urbanist text-brand-orange-100">
         Car Repair Tutorials
       </h1>
 
-      <TutorialsList initialTutorials={(data ?? []) as Tutorial[]} />
+      <TutorialsList 
+      initialTutorials={(tutorials ?? []) as Tutorial[]} 
+      initialFavIds={favIds ?? []} />
     </main>
   );
 }

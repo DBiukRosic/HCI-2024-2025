@@ -30,7 +30,7 @@ const Logo = ({ dark = false }) => (
   <div className="flex items-center justify-center gap-2">
     <LogoIcon />
     <span
-      className={cn("font-sarpanch text-3xl whitespace-nowrap", {
+      className={cn("font-urbanist text-3xl whitespace-nowrap", {
         "text-brand-orange-75": dark, "text-brand-orange-200": !dark}
         )
       }

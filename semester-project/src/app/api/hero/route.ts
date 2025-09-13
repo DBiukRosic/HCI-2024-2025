@@ -3,7 +3,6 @@ import { createClient, type Asset } from "contentful";
 
 export const runtime = "nodejs";
 
-// Contentful skeleton for your entry
 type HeroSectionSkeleton = {
   contentTypeId: "heroSection";
   fields: {
@@ -36,7 +35,7 @@ export async function GET() {
 
   const hero = res.items[0];
 
-  // ✅ Narrow images to Asset[] first (fixes “map on never”)
+  // Narrow images to Asset[] first (fixes “map on never”)
   const imagesArr: Asset[] = hero?.fields?.images ?? [];
 
   const images: ImageDTO[] = imagesArr.map((img) => {

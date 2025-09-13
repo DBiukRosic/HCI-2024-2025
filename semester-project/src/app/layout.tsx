@@ -1,15 +1,14 @@
-//import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Inter, Urbanist, Unlock, Sarpanch } from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+
 //Fonts and their settings
 const inter = Inter({ subsets: ['latin'], variable: "--font-inter"});
 const urbanist = Urbanist({ subsets: ['latin'], variable: "--font-urbanist" });
 const unlock = Unlock({weight: "400", subsets: ["latin"] , variable: "--font-unlock"});
-const sarpanch = Sarpanch({weight: "400", subsets: ["latin"] , variable: "--font-sarpanch"});
 
 export const metadata: Metadata = {
   title: 'CAR(E)',
@@ -24,12 +23,11 @@ export default function RootLayout({
   return (
      <html
       lang="en"
-      suppressHydrationWarning
-      className={`dark ${unlock.variable} ${inter.variable} ${urbanist.variable} ${sarpanch.variable}`}
+      className={`dark ${inter.variable} ${urbanist.variable} ${unlock.variable}`}
     >
-      <body className={urbanist.className}>
+      <body className="flex flex-col min-h-screen">
         <NavBar />
-        {children}
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

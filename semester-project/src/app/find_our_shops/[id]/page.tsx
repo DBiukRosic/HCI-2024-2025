@@ -1,5 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase";
 import { notFound } from "next/navigation";
+import FavButton from "@/components/account/FavButton";
 
 type Params = { id: string };
 
@@ -38,6 +39,13 @@ export default async function ShopDetailPage({
       >
         Open in Google Maps
       </a>
+       <div className="flex mt-4">
+         <FavButton 
+            kind ="location" 
+            targetId={data.id} 
+            className="w-16 h-16 text-9xl" />
+       </div>
+
     </main>
   );
 }

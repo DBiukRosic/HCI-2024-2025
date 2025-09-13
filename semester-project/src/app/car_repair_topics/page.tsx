@@ -125,7 +125,6 @@ export default function CarRepairTopicsPage() {
                 </ul>
 
                 <div className="pt-3 mt-auto">
-                  {/* Use your Button component; blue variant fits here nicely */}
                   <Button href={`/car_repair_topics/${t.slug}`} blue showIcon>
                     Explore {t.title}
                   </Button>
@@ -135,7 +134,6 @@ export default function CarRepairTopicsPage() {
           ))}
         </div>
 
-        {/* Optional: also provide text links for accessibility/SEO */}
         <nav aria-label="Topic shortcuts" className="sr-only">
           <ul>
             {TOPICS.map((t) => (

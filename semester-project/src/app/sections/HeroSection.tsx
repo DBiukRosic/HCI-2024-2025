@@ -9,7 +9,6 @@ import Button from "@/components/button";
 /**
  * Expecting the API to return an array like:
  * [{ url, width, height, title, borderRadius }]
- * We'll map it into HeroImageObject (image: string, borderRadius: string).
  */
 
 const HeroSection = () => {
@@ -27,8 +26,8 @@ const HeroSection = () => {
         if (!alive) return;
 
         const mapped: HeroImageObject[] = list.map((img: any) => ({
-          image: img.url,                 // string URL from Contentful
-          borderRadius: img.borderRadius, // already coming from API
+          image: img.url,                 
+          borderRadius: img.borderRadius, 
         }));
 
         setImages(mapped);

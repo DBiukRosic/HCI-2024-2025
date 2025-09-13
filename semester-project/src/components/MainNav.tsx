@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils";
 import { Page } from "@/components/Navbar";
 import Hamburger from "@/components/Hamburger";
 import { useState } from "react";
+import NavAuthButton from "./NavAuthButton";
 
 const MainNav = ({ pages }: { pages: Page[] }) => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <nav className="flex flex-col lg:flex-row items-start lg:items-center justify-between p-4">
@@ -27,7 +29,7 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
                   `,
                   {
                     "bg-brand-blue-300 text-brand-orange-100 pointer-events-none":
-                      pathname === href,
+                      isActive(href),
                   }
                 )}
               >
@@ -36,6 +38,10 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
             </Link>
           </li>
         ))}
+        {/* Auth button */}
+        <li>
+          <NavAuthButton />
+        </li>
       </ul>
 
       {/* Mobile hamburger button */}
@@ -58,7 +64,7 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
                     `,
                     {
                       "bg-brand-blue-300 text-brand-orange-100 pointer-events-none":
-                        pathname === href,
+                        isActive(href),
                     }
                   )}
                 >
@@ -67,6 +73,13 @@ const MainNav = ({ pages }: { pages: Page[] }) => {
               </Link>
             </li>
           ))}
+          {/* Auth button */}
+          <li>
+            <NavAuthButton 
+              asBlock 
+              onClick={() => setMenuOpen(false)}
+              className="px-4 py-3" />
+          </li>
         </ul>
       )}
     </nav>

@@ -5,8 +5,8 @@ type Testimonial = {
   name: string;
   location: string;
   review: string;
-  rating: number; // 1-5
-  image: string;  // path in /public
+  rating: number; 
+  image: string;
 };
 
 const TESTIMONIALS: Testimonial[] = [

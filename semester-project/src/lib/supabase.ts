@@ -1,6 +1,8 @@
+"use server";
+
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -12,17 +14,23 @@ export async function createSupabaseServer() {
       get(name: string) {
         return store.get(name)?.value;
       },
-      set(name: string, value: string, options: CookieOptions) {
-        store.set({ name, value, ...options });
+      set(_name: string, _value: string, _options: CookieOptions) {
       },
-      remove(name: string, options: CookieOptions) {
-        store.set({ name, value: "", ...options });
+      remove(_name: string, _options: CookieOptions) {
       },
     },
   });
 }
 
-// client helper
-export function createSupabaseBrowser() {
-  return createClient(SUPABASE_URL, SUPABASE_ANON);
+// --- Auth helpers ---
+export async function getUserServer() {
+  const supabase = await createSupabaseServer();
+  const { data: { user } } = await supabase.auth.getUser();
+  return user ?? null;
+}
+
+export async function requireUserServer() {
+  const user = await getUserServer();
+  if (!user) redirect("/user_profile"); // or /login
+  return user;
 }

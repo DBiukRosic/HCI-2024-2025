@@ -1,4 +1,3 @@
-//import Link from "next/link";
 import HeroSection from "./sections/HeroSection";
 import GuidesSection from "./sections/GuidesSection";
 import ServiceSection from "./sections/ServiceSection";

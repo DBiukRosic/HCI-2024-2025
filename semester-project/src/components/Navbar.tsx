@@ -1,4 +1,4 @@
-//"use client";
+"use client";
 
 import Logo from "@/components/Logo";
 import MainNav from "@/components/MainNav";
@@ -15,9 +15,7 @@ const pages: Page[] = [
     { href: "/tutorials", title: "Tutorials" },
     { href: "/find_our_shops", title: "Find Us" },
     { href: "/about_us", title: "About Us" },
-    { href: "/user_profile", title: "Sign In" },
-   // { href: "/disclaimers", title: "Disclaimers" },
-   //{ href: "/contact_us", title: "Contact Us" },
+    //{ href: "/user_profile", title: "Sign In" },
   ];
 
   const NavBar = () => {

@@ -1,6 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase";
 import Link from "next/link";
 import clsx from "clsx";
+import FavButton from "@/components/account/FavButton";
 
 type Shop = {
   id: number;
@@ -49,10 +50,26 @@ export default async function FindOurShopsPage({
 
   const supabase = await createSupabaseServer();
 
+// read checkbox (sent only when checked)
+const onlyFav = (q as any).onlyFav === "1" || (q as any).onlyFav === "on";
+
+// current user + their favourite shop IDs
+const { data: { user } } = await supabase.auth.getUser();
+let favIds: number[] = [];
+if (user) {
+  const { data: favLocs = [] } = await supabase
+    .from("favorite_locations")
+    .select("shop_id")
+    .eq("user_id", user.id);
+  favIds = (favLocs ?? []).map((r) => r.shop_id);
+}
+
   let qb = supabase.from("shops").select("*", { count: "exact" });
 
   if (city) qb = qb.eq("city", city);
   if (search) qb = qb.or(`name.ilike.%${search}%,address.ilike.%${search}%`);
+  if (onlyFav) qb = qb.in("id", favIds);
+
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
@@ -71,21 +88,21 @@ export default async function FindOurShopsPage({
 
   return (
     <main className="flex flex-col items-center min-h-screen max-w-5xl m-auto p-10">
-      <h1 className="text-3xl font-urbanist-bold pb-6">Locations of our shops</h1>
+      <h1 className="text-4xl font-urbanist font-bold pb-6 text-brand-orange-100">Locations of our shops</h1>
 
       {/* Search & filter */}
-      <form method="GET" className="w-full grid grid-cols-1 md:grid-cols-3 gap-3 pb-6">
+      <form method="GET" className="w-full grid grid-cols-1 md:grid-cols-4 gap-3 pb-6">
         <input
           type="search"
           name="q"
           defaultValue={search}
           placeholder="Search by name or address"
-          className="w-full rounded border px-3 py-2 bg-white text-black"
+          className="w-full rounded border px-3 py-2 bg-brand-orange-50 text-black"
         />
         <select
           name="city"
           defaultValue={city ?? ""}
-          className="w-full rounded border px-3 py-2 bg-white text-black"
+          className="w-full rounded border px-3 py-2 bg-brand-orange-50 text-black"
         >
           <option value="">All cities</option>
           <option value="Zagreb">Zagreb</option>
@@ -94,9 +111,18 @@ export default async function FindOurShopsPage({
           <option value="Rijeka">Rijeka</option>
           <option value="Zadar">Zadar</option>
         </select>
+         <label className="flex items-center gap-2 px-1">
+          <input
+            type="checkbox"
+            name="onlyFav"
+            value="1"
+            defaultChecked={onlyFav}
+          />
+          Only favourites
+        </label>
         <button
           type="submit"
-          className="rounded border bg-gray-100 px-3 py-2 text-gray-800 font-urbanist"
+          className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-2 text-gray-800 font-urbanist"
         >
           Search
         </button>
@@ -110,7 +136,7 @@ export default async function FindOurShopsPage({
         <div className="flex gap-4 ml-auto">
           <Link
             href={{ pathname: "/find_our_shops", query: { ...q, _page: 1, _limit: pageSize } }}
-            className="rounded border bg-gray-100 px-3 py-1 text-gray-800 font-urbanist"
+            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-gray-800 font-urbanist"
           >
             First
           </Link>
@@ -120,7 +146,7 @@ export default async function FindOurShopsPage({
               query: { ...q, _page: Math.max(1, page - 1), _limit: pageSize },
             }}
             className={clsx(
-              "rounded border bg-gray-100 px-3 py-1 text-gray-800 font-urbanist",
+              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-gray-800 font-urbanist",
               page === 1 && "pointer-events-none opacity-50"
             )}
           >
@@ -132,7 +158,7 @@ export default async function FindOurShopsPage({
               query: { ...q, _page: Math.min(totalPages, page + 1), _limit: pageSize },
             }}
             className={clsx(
-              "rounded border bg-gray-100 px-3 py-1 text-gray-800 font-urbanist",
+              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-gray-800 font-urbanist",
               page === totalPages && "pointer-events-none opacity-50"
             )}
           >
@@ -143,7 +169,7 @@ export default async function FindOurShopsPage({
               pathname: "/find_our_shops",
               query: { ...q, _page: totalPages, _limit: pageSize },
             }}
-            className="rounded border bg-gray-100 px-3 py-1 text-gray-800 font-urbanist"
+            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-gray-800 font-urbanist"
           >
             Last
           </Link>
@@ -153,7 +179,7 @@ export default async function FindOurShopsPage({
       {/* Results */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
         {(shops as Shop[] | null)?.map((s) => (
-          <li key={s.id} className="rounded border p-4 bg-white/80 dark:bg-white/10">
+          <li key={s.id} className="relative rounded border p-4 bg-white/80 dark:bg-white/10">
             <div className="text-sm opacity-70">{s.city}</div>
             <h3 className="text-xl font-semibold">{s.name}</h3>
             <div className="opacity-80">{s.address}</div>
@@ -162,6 +188,11 @@ export default async function FindOurShopsPage({
               <Link href={`/find_our_shops/${s.id}`} className="text-blue-500 underline">
                 View details
               </Link>
+              <FavButton 
+                kind ="location" 
+                targetId={s.id}
+                initialIsFav={favIds.includes(s.id)} 
+                className="absolute right-3 bottom-3" />
             </div>
           </li>
         ))}
@@ -169,6 +200,9 @@ export default async function FindOurShopsPage({
 
       {(!shops || shops.length === 0) && (
         <p className="pt-10 opacity-70">No shops found.</p>
+      )}
+      {onlyFav && (!user || favIds.length === 0) && (
+        <p className="pt-20 text-lg text-center w-full">Add some favourite shops.</p>
       )}
     </main>
   );
