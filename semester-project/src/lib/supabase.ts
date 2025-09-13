@@ -8,16 +8,16 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export async function createSupabaseServer() {
-  const store = await cookies();
+  const store = await cookies(); // Next 15: async
+
   return createServerClient(SUPABASE_URL, SUPABASE_ANON, {
     cookies: {
       get(name: string) {
         return store.get(name)?.value;
       },
-      set(_name: string, _value: string, _options: CookieOptions) {
-      },
-      remove(_name: string, _options: CookieOptions) {
-      },
+      // no-ops in Server Components (cannot mutate cookies here)
+      set(_name: string, _value: string, _options: CookieOptions) {},
+      remove(_name: string, _options: CookieOptions) {},
     },
   });
 }

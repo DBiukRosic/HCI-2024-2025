@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Urbanist, Unlock, Sarpanch } from 'next/font/google';
+import { Inter, Urbanist, Unlock} from 'next/font/google';
 import './globals.css';
 import NavBar from '@/components/Navbar';
 import Footer from '@/components/Footer';

@@ -52,13 +52,13 @@ export default function AuthPanel({ initialEmail = "" }: { initialEmail?: string
         });
         router.refresh();
       }
-    } catch (e: any) {
-      setErr(e?.message ?? "Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
+    } catch (e: unknown) {
+        const message = e instanceof Error ? e.message : String(e);
+        setErr(message ?? "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
   }
-
   async function signOut() {
     setLoading(true);
     await supabase.auth.signOut();

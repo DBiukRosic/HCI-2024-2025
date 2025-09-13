@@ -90,8 +90,8 @@ export default async function SavedItems() {
         {favLocs?.length ? (
           <ul className="space-y-2">
             {favLocs!.map((f) => (
-              <li key={f.id} className="text-sm">
-                Shop: {f.shop?.name ?? "Unknown shop"}
+              <li key={f.id} className="text-md">
+                <span className="font-bold">Shop:</span> {f.shop?.name ?? "Unknown shop"}
               </li>
             ))}
           </ul>
@@ -102,8 +102,8 @@ export default async function SavedItems() {
         {favTuts?.length ? (
           <ul className="space-y-2">
             {favTuts!.map((f) => (
-              <li key={f.id} className="text-sm">
-                Tutorial: {f.tutorial?.title ?? "Unknown tutorial"}
+              <li key={f.id} className="text-md">
+                <span className="font-bold">Tutorial:</span> {f.tutorial?.title ?? "Unknown tutorial"}
               </li>
             ))}
           </ul>

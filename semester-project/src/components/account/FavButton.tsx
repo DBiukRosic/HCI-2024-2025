@@ -70,31 +70,54 @@ export default function FavButton({
   const onConflictCols = kind === "tutorial" ? "user_id,tutorial_id" : "user_id,shop_id";
 
   try {
-    if (next) {
-      const { error } = await supabase
-        .from(table)
-        .upsert(
-          { [idCol]: targetId, user_id: user.id } as any,
-          { onConflict: onConflictCols }
-        );
-      if (error) throw error;
-    } else {
-      const { error } = await supabase
-        .from(table)
-        .delete()
-        .eq(idCol, targetId)
-        .eq("user_id", user.id);
-      if (error) throw error;
+      if (next) {
+        // INSERT/UPSERT (branch per table to avoid `any`)
+        if (kind === "tutorial") {
+          const { error } = await supabase
+            .from("favorite_tutorials")
+            .upsert(
+              { user_id: user.id, tutorial_id: targetId },
+              { onConflict: "user_id,tutorial_id" }
+            );
+          if (error) throw error;
+        } else {
+          const { error } = await supabase
+            .from("favorite_locations")
+            .upsert(
+              { user_id: user.id, shop_id: targetId },
+              { onConflict: "user_id,shop_id" }
+            );
+          if (error) throw error;
+        }
+      } else {
+        // DELETE
+        if (kind === "tutorial") {
+          const { error } = await supabase
+            .from("favorite_tutorials")
+            .delete()
+            .eq("tutorial_id", targetId)
+            .eq("user_id", user.id);
+          if (error) throw error;
+        } else {
+          const { error } = await supabase
+            .from("favorite_locations")
+            .delete()
+            .eq("shop_id", targetId)
+            .eq("user_id", user.id);
+          if (error) throw error;
+        }
+      }
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : String(e);
+      console.error("[FavButton] toggle failed:", message);
+      // revert optimistic state
+      setIsFav(!next);
+      onToggle?.(!next);
+      alert(message || "Could not update favourite. Check RLS/constraints.");
+    } finally {
+      setLoading(false);
     }
-  } catch (e: any) {
-    console.error("[FavButton] toggle failed:", e?.message ?? e);
-    setIsFav(!next);
-    onToggle?.(!next);
-    alert(e?.message ?? "Could not update favourite. Check RLS/constraints.");
-  } finally {
-    setLoading(false);
   }
-}
 
   return (
     <button

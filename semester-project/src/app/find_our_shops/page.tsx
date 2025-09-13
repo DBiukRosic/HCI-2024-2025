@@ -18,6 +18,7 @@ type Query = {
   city?: string;
   _page?: string;
   _limit?: string;
+  onlyFav?: "1" | "0" | string;
 };
 
 function toNum(v: string | undefined, fallback: number) {
@@ -51,7 +52,7 @@ export default async function FindOurShopsPage({
   const supabase = await createSupabaseServer();
 
 // read checkbox (sent only when checked)
-const onlyFav = (q as any).onlyFav === "1" || (q as any).onlyFav === "on";
+const onlyFav = q.onlyFav === "1" || q.onlyFav === "on"; //
 
 // current user + their favourite shop IDs
 const { data: { user } } = await supabase.auth.getUser();
