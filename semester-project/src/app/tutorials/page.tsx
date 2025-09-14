@@ -1,5 +1,11 @@
 import { createSupabaseServer } from "@/lib/supabase";
 import TutorialsList from "@/components/TutorialList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tutorials • CAR(E)",
+  description: "Learn car repair and maintenance with our step-by-step tutorials.",
+};
 
 type Tutorial = {
   id: number;

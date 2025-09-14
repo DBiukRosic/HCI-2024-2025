@@ -1,6 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import FavButton from "@/components/account/FavButton";
+import Button from "@/components/button";
 
 type Params = { id: string };
 
@@ -45,7 +46,15 @@ export default async function ShopDetailPage({
             targetId={data.id} 
             className="w-16 h-16 text-9xl" />
        </div>
-
+       <div className="mt-10">
+        <Button
+          orange
+          href="/find_our_shops"
+          showIcon
+        >
+          Back to Shops
+        </Button>
+      </div>
     </main>
   );
 }

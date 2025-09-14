@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getServiceItems } from "@/lib/contentful";
+import Button from "@/components/button";
 
 function formatEuro(n: number) {
   try {
@@ -72,6 +73,11 @@ export default async function CategoryServices({
           ))}
         </ul>
       )}
+      <div className="mt-10">
+        <Button href="/car_repair_topics" orange showIcon>
+          Back to Services
+        </Button>
+      </div>
     </main>
   );
 }
