@@ -47,7 +47,7 @@ export default async function CategoryServices({
       ) : (
         <ul className="grid grid-cols-1 gap-8 lg:gap-12 mx-auto">
           {items.map((s) => (
-            <li key={s.title} className="rounded-xl border p-8 bg-white/80 dark:bg-white/10">
+            <li key={s.title} className="rounded-xl border p-8 bg-white/10">
               <div className="flex flex-col md:flex-row gap-4 items-start">
                 <div className="relative w-full md:w-72 h-60 rounded overflow-hidden flex-shrink-0">
                   <Image
@@ -59,13 +59,13 @@ export default async function CategoryServices({
                   />
                 </div>
                 <div className="grow">
-                  <h3 className="font-semibold text-3xl text-brand-blue-500 dark:text-brand-orange-50">
+                  <h3 className="font-semibold text-3xl text-brand-orange-50">
                     {s.title}
                   </h3>
-                  <p className="text-md opacity-80 mt-2">{s.description}</p>
+                  <p className="text-md opacity-80 mt-2 text-brand-orange-50">{s.description}</p>
                   <div className="mt-4 text-lg">
-                    <span className="mr-10">⏱ {formatDuration(s.timeMinutes)}</span>
-                    <span>💶 {formatEuro(s.costEuro)}</span>
+                    <span className="mr-10 text-brand-orange-50">⏱ {formatDuration(s.timeMinutes)}</span>
+                    <span className="text-brand-orange-50">💶 {formatEuro(s.costEuro)}</span>
                   </div>
                 </div>
               </div>

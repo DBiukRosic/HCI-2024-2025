@@ -50,7 +50,7 @@ export default function DeleteBookingButton({
         "group inline-flex items-center justify-center rounded-full p-2",
         "transition-colors duration-200",
         "text-gray-100 hover:text-red-600",
-        "hover:bg-red-100 dark:hover:bg-red-900/20",
+        "hover:bg-red-900/20",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         className
       )}

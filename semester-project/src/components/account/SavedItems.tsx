@@ -19,8 +19,8 @@ export default async function SavedItems() {
 
   if (!user) {
     return (
-      <div className="rounded-2xl border bg-white/60 dark:bg-white/10 p-6">
-        <p className="text-sm">
+      <div className="rounded-2xl border bg-white/10 p-6">
+        <p className="text-sm text-brand-orange-50 opacity-80">
           Sign in to view your bookings, favorite locations, and tutorials.
         </p>
       </div>
@@ -55,12 +55,12 @@ export default async function SavedItems() {
   ]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-brand-orange-50">
       <Panel title="Your bookings">
         {bookings?.length ? (
           <ul className="space-y-2">
             {bookings!.map((b) => (
-              <li key={b.id} className="text-sm rounded border p-3 bg-white/70 dark:bg-white/10">
+              <li key={b.id} className="text-sm rounded border p-3 bg-white/10">
                 <div className="flex items-baseline justify-between">
                   <div className="font-medium">{b.headline}</div>
                   <div className="opacity-70"><ClientTime iso={new Date(b.created_at).toISOString()} /></div>
@@ -115,7 +115,7 @@ export default async function SavedItems() {
 
 function Panel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border bg-white/80 dark:bg-white/10 p-6">
+    <div className="rounded-2xl border bg-white/10 p-6">
       <h3 className="font-semibold mb-3">{title}</h3>
       <Suspense fallback={<p className="text-sm opacity-70">Loading…</p>}>
         {children}
@@ -124,5 +124,5 @@ function Panel({ title, children }: { title: string; children: React.ReactNode }
   );
 }
 function Empty({ text }: { text: string }) {
-  return <p className="text-sm opacity-70">{text}</p>;
+  return <p className="text-sm opacity-70 text-brand-orange-50">{text}</p>;
 }

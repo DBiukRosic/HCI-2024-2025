@@ -48,7 +48,7 @@ const HeroSection = () => {
           We care about your car!
         </h1>
 
-        <p className="text-base font-urbanist text-center lg:text-left xl:test-lg whitespace-break-spaces">
+        <p className="text-base font-urbanist text-center lg:text-left xl:test-lg whitespace-break-spaces text-brand-blue-50">
           Our car service is dedicated to ensuring your vehicle&apos;s peak performance and your complete
           satisfaction. With a team of highly skilled technicians and state-of-the-art equipment, we offer
           a comprehensive range of services to keep your vehicle running smoothly. From routine maintenance

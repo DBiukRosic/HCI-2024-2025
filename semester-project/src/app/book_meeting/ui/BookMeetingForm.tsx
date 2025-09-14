@@ -53,7 +53,7 @@ export default function BookMeetingForm({
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4 max-w-xl">
+    <form onSubmit={submit} className="grid gap-4 max-w-xl text-brand-orange-50">
       <div className="grid gap-1">
         <label className="text-lg font-urbanist">Headline*</label>
         <input

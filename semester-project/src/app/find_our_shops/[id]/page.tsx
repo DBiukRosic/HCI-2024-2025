@@ -24,7 +24,7 @@ export default async function ShopDetailPage({
   if (error || !data) notFound();
 
   return (
-    <main className="min-h-screen container py-20">
+    <main className="min-h-screen container py-20 text-brand-orange-50">
       <div className="text-lg text-brand-orange-100 opacity-70">{data.city}</div>
       <h1 className="text-5xl font-urbanist-bold">{data.name}</h1>
       <p className="mt-3">{data.address}</p>

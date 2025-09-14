@@ -82,7 +82,7 @@ export default function TutorialsList({
           className="w-full rounded border px-3 py-2 bg-brand-orange-50 text-black"
           aria-label="Search tutorials"
         />
-        <label className="flex items-center gap-2 text-sm">
+        <label className="flex items-center gap-2 text-sm text-brand-orange-50">
           <input
             type="checkbox"
             className="bg-brand-orange-50"
@@ -100,7 +100,7 @@ export default function TutorialsList({
         </button>
       </div>
 
-      <div className="text-sm opacity-70">
+      <div className="text-sm opacity-70 text-brand-orange-50">
         Showing {filtered.length} of {initialTutorials.length}
       </div>
 

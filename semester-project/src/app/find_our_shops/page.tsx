@@ -112,7 +112,7 @@ if (user) {
           <option value="Rijeka">Rijeka</option>
           <option value="Zadar">Zadar</option>
         </select>
-         <label className="flex items-center gap-2 px-1">
+         <label className="flex items-center gap-2 px-1 text-brand-orange-50">
           <input
             type="checkbox"
             name="onlyFav"
@@ -123,21 +123,21 @@ if (user) {
         </label>
         <button
           type="submit"
-          className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-2 text-gray-800 font-urbanist"
+          className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-2 text-brand-blue-500 font-urbanist"
         >
           Search
         </button>
       </form>
 
       {/* Pagination */}
-      <div className="flex items-baseline gap-8 pb-6 w-full">
+      <div className="flex items-baseline gap-8 pb-6 w-full text-brand-orange-50">
         <div>
           Page {page} of {totalPages} {total ? `• ${total} results` : ""}
         </div>
         <div className="flex gap-4 ml-auto">
           <Link
             href={{ pathname: "/find_our_shops", query: { ...q, _page: 1, _limit: pageSize } }}
-            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-gray-800 font-urbanist"
+            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-brand-blue-500 font-urbanist"
           >
             First
           </Link>
@@ -147,7 +147,7 @@ if (user) {
               query: { ...q, _page: Math.max(1, page - 1), _limit: pageSize },
             }}
             className={clsx(
-              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-gray-800 font-urbanist",
+              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-brand-blue-500 font-urbanist",
               page === 1 && "pointer-events-none opacity-50"
             )}
           >
@@ -159,7 +159,7 @@ if (user) {
               query: { ...q, _page: Math.min(totalPages, page + 1), _limit: pageSize },
             }}
             className={clsx(
-              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-gray-800 font-urbanist",
+              "rounded border bg-brand-orange-75 hover:bg-brand-orange-200 px-3 py-1 text-brand-blue-500 font-urbanist",
               page === totalPages && "pointer-events-none opacity-50"
             )}
           >
@@ -170,7 +170,7 @@ if (user) {
               pathname: "/find_our_shops",
               query: { ...q, _page: totalPages, _limit: pageSize },
             }}
-            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-gray-800 font-urbanist"
+            className="rounded border bg-brand-orange-100 hover:bg-brand-orange-300 px-3 py-1 text-brand-blue-500 font-urbanist"
           >
             Last
           </Link>
@@ -180,7 +180,7 @@ if (user) {
       {/* Results */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
         {(shops as Shop[] | null)?.map((s) => (
-          <li key={s.id} className="relative rounded border p-4 bg-white/80 dark:bg-white/10">
+          <li key={s.id} className="relative rounded border p-4 bg-brand-blue-200 text-brand-orange-50">
             <div className="text-sm opacity-70">{s.city}</div>
             <h3 className="text-xl font-semibold">{s.name}</h3>
             <div className="opacity-80">{s.address}</div>

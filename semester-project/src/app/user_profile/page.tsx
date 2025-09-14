@@ -37,7 +37,7 @@ export default async function UserProfilePage() {
           </ul>
         </div>
 
-        <div className="rounded-2xl border bg-white/80 dark:bg-white/10 p-6">
+        <div className="rounded-2xl border bg-white/10 p-6">
           <AuthPanel initialEmail={user?.email ?? ""} />
         </div>
       </section>
@@ -49,7 +49,7 @@ export default async function UserProfilePage() {
       )}
       </AuthGate>
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-brand-blue-500 dark:text-brand-orange-50">
+        <h2 className="text-xl font-semibold text-brand-orange-50">
           Your saved items
         </h2>
         <SavedItems />

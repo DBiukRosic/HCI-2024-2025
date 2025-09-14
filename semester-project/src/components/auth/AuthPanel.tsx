@@ -76,7 +76,7 @@ export default function AuthPanel({ initialEmail = "" }: { initialEmail?: string
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 text-brand-orange-50">
       {isLoggedIn ? (
         <div className="flex items-center justify-between">
           <div className="text-sm">Logged in as <span className="font-semibold">{initialEmail}</span></div>
@@ -90,14 +90,14 @@ export default function AuthPanel({ initialEmail = "" }: { initialEmail?: string
             <button
               type="button"
               onClick={() => setMode("signin")}
-              className={`px-3 py-1 rounded border ${mode === "signin" ? "bg-brand-blue-500" : "bg-brand-orange-100"}`}
+              className={`px-3 py-1 rounded border ${mode === "signin" ? "bg-brand-blue-500 text-brand-orange-50" : "bg-brand-orange-100 text-brand-blue-500"}`}
             >
               Sign in
             </button>
             <button
               type="button"
               onClick={() => setMode("signup")}
-              className={`px-3 py-1 rounded border ${mode === "signup" ? "bg-brand-blue-500" : "bg-brand-orange-100"}`}
+              className={`px-3 py-1 rounded border ${mode === "signup" ? "bg-brand-blue-500 text-brand-orange-50" : "bg-brand-orange-100 text-brand-blue-500"}`}
             >
               Create account
             </button>
@@ -105,7 +105,7 @@ export default function AuthPanel({ initialEmail = "" }: { initialEmail?: string
 
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid gap-2">
-              <label className="text-sm">Email</label>
+              <label className="text-sm text-brand-orange-50">Email</label>
               <input
                 type="email"
                 required
@@ -115,7 +115,7 @@ export default function AuthPanel({ initialEmail = "" }: { initialEmail?: string
               />
             </div>
             <div className="grid gap-2">
-              <label className="text-sm">Password</label>
+              <label className="text-sm text-brand-orange-50">Password</label>
               <input
                 type="password"
                 required
