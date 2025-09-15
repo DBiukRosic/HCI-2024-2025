@@ -29,7 +29,7 @@
 - Link to Assignment 3: [**Assignment 3**](https://carehci.vercel.app/) 
 - Link to Assignment 4: [**Assignment 4**](assignments/class_assignment_4/)
 - Link to Assignment 5: [**Assignment 5**](https://carehci.vercel.app/)
-- Link to Assignment 6: [**Assignment 6**](https://carehci.vercel.app/)
+- Link to Assignment 6: [**Assignment 6**](assignments/class_assignment_6/)
 
 ## Project Requirements
 
