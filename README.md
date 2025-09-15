@@ -19,16 +19,17 @@
 
 ### Semester Project
 
-- Link to my production version: [**Production Version**](https://carehci.vercel.app/) <!-- Replace with actual URL -->
-- Link to my final report: [**Final Report**](URL_TO_FINAL_REPORT) <!-- Replace with actual URL -->
-<!-- Add more as necessary -->
+- Link to my production version: [**Production Version**](https://carehci.vercel.app/)
+- Link to my final report: [**Final Report**](https://quasar-jury-fe2.notion.site/CAR-E-26dc0545c87580ee93fbc47280bb718d) 
 
 ### Semester Assignments
 
 - Link to Assignment 1: [**Assignment 1**](assignments/class_assignment_1/)
-- Link to Assignment 2: [**Asignment 2**](assignments/class_assignment_2/)
-- Link to Assignment 3: [**Assignment 3**](https://art4u.vercel.app/) <!-- Replace with actual URL --><!-- Replace with actual URL -->
-<!-- Add more assignments as necessary -->
+- Link to Assignment 2: [**Assignment 2**](assignments/class_assignment_2/)
+- Link to Assignment 3: [**Assignment 3**](https://carehci.vercel.app/) 
+- Link to Assignment 4: [**Assignment 4**](assignments/class_assignment_4/)
+- Link to Assignment 5: [**Assignment 5**](https://carehci.vercel.app/)
+- Link to Assignment 6: [**Assignment 6**](https://carehci.vercel.app/)
 
 ## Project Requirements
 
@@ -46,4 +47,4 @@
 - [x] Show the production version of the project
 - [x] The production version will be deployed online on an appropriate cloud platform ([Vercel](https://vercel.com), [Netlify](https://www.netlify.com/) or a similar service)
 - [x] Analyze the application's performance ([PageSpeed Insights](https://pagespeed.web.dev/))
-- [ ] The analysis results will be part of the final report
+- [x] The analysis results will be part of the final report
